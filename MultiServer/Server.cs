@@ -35,6 +35,8 @@ namespace GameServer
 
         private static void GameStart()
         {
+            StateObject state = new StateObject();
+
             byte[] sendBuffer = new byte[1024];
             string message = JsonConvert.SerializeObject("this is a message");
             sendBuffer = Encoding.ASCII.GetBytes(message);
@@ -44,7 +46,8 @@ namespace GameServer
                 List<Player> roomPlayers = room.getPlayers();
                 foreach (Player player in roomPlayers)
                 {
-                    player.clientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendMesageCallback, player.clientSocket);
+                    state.workSocket = player.clientSocket;
+                    player.clientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendMesageCallback, state);
                 }
             }
         }
@@ -242,6 +245,7 @@ namespace GameServer
                 }
             }
 
+            GameStart();
             return;
 
             //sending player data back to client
