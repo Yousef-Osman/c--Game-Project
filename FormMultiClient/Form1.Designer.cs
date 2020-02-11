@@ -39,28 +39,22 @@
             this.WatchBtn = new System.Windows.Forms.Button();
             this.ChoicePanal = new System.Windows.Forms.Panel();
             this.PlayBtn = new System.Windows.Forms.Button();
-            this.RoomsListLabel = new System.Windows.Forms.Label();
-            this.RoomsListLB = new System.Windows.Forms.ListBox();
-            this.RoomsPanel = new System.Windows.Forms.Panel();
-            this.ConnectBtn = new System.Windows.Forms.Button();
-            this.BackBtn = new System.Windows.Forms.Button();
-            this.CreateRoomPanel = new System.Windows.Forms.Panel();
-            this.PlayersLB = new System.Windows.Forms.ListBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.WatchPanal = new System.Windows.Forms.Panel();
             this.StartWatchingBtn = new System.Windows.Forms.Button();
             this.StartWatchLB = new System.Windows.Forms.ListBox();
             this.chooseRoom = new System.Windows.Forms.Label();
             this.StartPlayPanel = new System.Windows.Forms.Panel();
-            this.PlayRoomsLB = new System.Windows.Forms.ListBox();
+            this.StartPlayingLB = new System.Windows.Forms.ListBox();
             this.StartPlayingBtn = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.PlayersLB = new System.Windows.Forms.ListBox();
+            this.CreateRoomPanel = new System.Windows.Forms.Panel();
             this.logInPanal.SuspendLayout();
             this.ChoicePanal.SuspendLayout();
-            this.RoomsPanel.SuspendLayout();
-            this.CreateRoomPanel.SuspendLayout();
             this.WatchPanal.SuspendLayout();
             this.StartPlayPanel.SuspendLayout();
+            this.CreateRoomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // Connect
@@ -180,93 +174,6 @@
             this.PlayBtn.UseVisualStyleBackColor = true;
             this.PlayBtn.Click += new System.EventHandler(this.PlayBtn_Click);
             // 
-            // RoomsListLabel
-            // 
-            this.RoomsListLabel.AutoSize = true;
-            this.RoomsListLabel.Font = new System.Drawing.Font("Tahoma", 16F);
-            this.RoomsListLabel.Location = new System.Drawing.Point(206, 24);
-            this.RoomsListLabel.Name = "RoomsListLabel";
-            this.RoomsListLabel.Size = new System.Drawing.Size(145, 33);
-            this.RoomsListLabel.TabIndex = 0;
-            this.RoomsListLabel.Text = "Rooms List";
-            // 
-            // RoomsListLB
-            // 
-            this.RoomsListLB.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.RoomsListLB.FormattingEnabled = true;
-            this.RoomsListLB.ItemHeight = 24;
-            this.RoomsListLB.Location = new System.Drawing.Point(19, 76);
-            this.RoomsListLB.Name = "RoomsListLB";
-            this.RoomsListLB.Size = new System.Drawing.Size(519, 172);
-            this.RoomsListLB.TabIndex = 1;
-            this.RoomsListLB.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.RoomsListLB_MouseDoubleClick);
-            // 
-            // RoomsPanel
-            // 
-            this.RoomsPanel.Controls.Add(this.ConnectBtn);
-            this.RoomsPanel.Controls.Add(this.BackBtn);
-            this.RoomsPanel.Controls.Add(this.RoomsListLB);
-            this.RoomsPanel.Controls.Add(this.RoomsListLabel);
-            this.RoomsPanel.Location = new System.Drawing.Point(122, 70);
-            this.RoomsPanel.Name = "RoomsPanel";
-            this.RoomsPanel.Size = new System.Drawing.Size(557, 352);
-            this.RoomsPanel.TabIndex = 6;
-            this.RoomsPanel.Visible = false;
-            // 
-            // ConnectBtn
-            // 
-            this.ConnectBtn.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.ConnectBtn.Location = new System.Drawing.Point(436, 281);
-            this.ConnectBtn.Name = "ConnectBtn";
-            this.ConnectBtn.Size = new System.Drawing.Size(102, 46);
-            this.ConnectBtn.TabIndex = 3;
-            this.ConnectBtn.Text = "Connect";
-            this.ConnectBtn.UseVisualStyleBackColor = true;
-            this.ConnectBtn.Visible = false;
-            this.ConnectBtn.Click += new System.EventHandler(this.ConnectBtn_Click);
-            // 
-            // BackBtn
-            // 
-            this.BackBtn.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.BackBtn.Location = new System.Drawing.Point(19, 281);
-            this.BackBtn.Name = "BackBtn";
-            this.BackBtn.Size = new System.Drawing.Size(104, 46);
-            this.BackBtn.TabIndex = 2;
-            this.BackBtn.Text = "Back";
-            this.BackBtn.UseVisualStyleBackColor = true;
-            this.BackBtn.Visible = false;
-            this.BackBtn.Click += new System.EventHandler(this.BackBtn_Click);
-            // 
-            // CreateRoomPanel
-            // 
-            this.CreateRoomPanel.Controls.Add(this.PlayersLB);
-            this.CreateRoomPanel.Controls.Add(this.label2);
-            this.CreateRoomPanel.Location = new System.Drawing.Point(122, 70);
-            this.CreateRoomPanel.Name = "CreateRoomPanel";
-            this.CreateRoomPanel.Size = new System.Drawing.Size(557, 352);
-            this.CreateRoomPanel.TabIndex = 7;
-            this.CreateRoomPanel.Visible = false;
-            // 
-            // PlayersLB
-            // 
-            this.PlayersLB.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.PlayersLB.FormattingEnabled = true;
-            this.PlayersLB.ItemHeight = 24;
-            this.PlayersLB.Location = new System.Drawing.Point(47, 109);
-            this.PlayersLB.Name = "PlayersLB";
-            this.PlayersLB.Size = new System.Drawing.Size(463, 148);
-            this.PlayersLB.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Tahoma", 14F);
-            this.label2.Location = new System.Drawing.Point(170, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(224, 29);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Waiting for a Player";
-            // 
             // WatchPanal
             // 
             this.WatchPanal.Controls.Add(this.StartWatchingBtn);
@@ -288,7 +195,7 @@
             this.StartWatchingBtn.Text = "Start Watching";
             this.StartWatchingBtn.UseVisualStyleBackColor = true;
             this.StartWatchingBtn.Visible = false;
-            this.StartWatchingBtn.Click += new System.EventHandler(this.StartWatchingBtn_Click);
+            this.StartWatchingBtn.Click += new System.EventHandler(this.RoomNumber);
             // 
             // StartWatchLB
             // 
@@ -313,7 +220,7 @@
             // 
             // StartPlayPanel
             // 
-            this.StartPlayPanel.Controls.Add(this.PlayRoomsLB);
+            this.StartPlayPanel.Controls.Add(this.StartPlayingLB);
             this.StartPlayPanel.Controls.Add(this.StartPlayingBtn);
             this.StartPlayPanel.Controls.Add(this.label3);
             this.StartPlayPanel.Location = new System.Drawing.Point(125, 70);
@@ -322,15 +229,15 @@
             this.StartPlayPanel.TabIndex = 9;
             this.StartPlayPanel.Visible = false;
             // 
-            // PlayRoomsLB
+            // StartPlayingLB
             // 
-            this.PlayRoomsLB.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.PlayRoomsLB.FormattingEnabled = true;
-            this.PlayRoomsLB.ItemHeight = 24;
-            this.PlayRoomsLB.Location = new System.Drawing.Point(35, 77);
-            this.PlayRoomsLB.Name = "PlayRoomsLB";
-            this.PlayRoomsLB.Size = new System.Drawing.Size(480, 148);
-            this.PlayRoomsLB.TabIndex = 6;
+            this.StartPlayingLB.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.StartPlayingLB.FormattingEnabled = true;
+            this.StartPlayingLB.ItemHeight = 24;
+            this.StartPlayingLB.Location = new System.Drawing.Point(35, 77);
+            this.StartPlayingLB.Name = "StartPlayingLB";
+            this.StartPlayingLB.Size = new System.Drawing.Size(480, 148);
+            this.StartPlayingLB.TabIndex = 6;
             // 
             // StartPlayingBtn
             // 
@@ -342,7 +249,7 @@
             this.StartPlayingBtn.Text = "Start Playing";
             this.StartPlayingBtn.UseVisualStyleBackColor = true;
             this.StartPlayingBtn.Visible = false;
-            this.StartPlayingBtn.Click += new System.EventHandler(this.StartPlayingBtn_Click);
+            this.StartPlayingBtn.Click += new System.EventHandler(this.RoomNumber);
             // 
             // label3
             // 
@@ -354,18 +261,47 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Choose a Room";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Tahoma", 14F);
+            this.label2.Location = new System.Drawing.Point(170, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(224, 29);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Waiting for a Player";
+            // 
+            // PlayersLB
+            // 
+            this.PlayersLB.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.PlayersLB.FormattingEnabled = true;
+            this.PlayersLB.ItemHeight = 24;
+            this.PlayersLB.Location = new System.Drawing.Point(47, 109);
+            this.PlayersLB.Name = "PlayersLB";
+            this.PlayersLB.Size = new System.Drawing.Size(463, 148);
+            this.PlayersLB.TabIndex = 1;
+            // 
+            // CreateRoomPanel
+            // 
+            this.CreateRoomPanel.Controls.Add(this.PlayersLB);
+            this.CreateRoomPanel.Controls.Add(this.label2);
+            this.CreateRoomPanel.Location = new System.Drawing.Point(122, 70);
+            this.CreateRoomPanel.Name = "CreateRoomPanel";
+            this.CreateRoomPanel.Size = new System.Drawing.Size(557, 352);
+            this.CreateRoomPanel.TabIndex = 7;
+            this.CreateRoomPanel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.Connect);
-            this.Controls.Add(this.CreateRoomPanel);
-            this.Controls.Add(this.RoomsPanel);
             this.Controls.Add(this.WatchPanal);
             this.Controls.Add(this.StartPlayPanel);
             this.Controls.Add(this.ChoicePanal);
             this.Controls.Add(this.logInPanal);
+            this.Controls.Add(this.Connect);
+            this.Controls.Add(this.CreateRoomPanel);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -373,14 +309,12 @@
             this.logInPanal.PerformLayout();
             this.ChoicePanal.ResumeLayout(false);
             this.ChoicePanal.PerformLayout();
-            this.RoomsPanel.ResumeLayout(false);
-            this.RoomsPanel.PerformLayout();
-            this.CreateRoomPanel.ResumeLayout(false);
-            this.CreateRoomPanel.PerformLayout();
             this.WatchPanal.ResumeLayout(false);
             this.WatchPanal.PerformLayout();
             this.StartPlayPanel.ResumeLayout(false);
             this.StartPlayPanel.PerformLayout();
+            this.CreateRoomPanel.ResumeLayout(false);
+            this.CreateRoomPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -397,23 +331,18 @@
         private System.Windows.Forms.Button CreateRoomBtn;
         private System.Windows.Forms.Button WatchBtn;
         private System.Windows.Forms.Panel ChoicePanal;
-        private System.Windows.Forms.Label RoomsListLabel;
-        private System.Windows.Forms.ListBox RoomsListLB;
-        private System.Windows.Forms.Panel RoomsPanel;
-        private System.Windows.Forms.Button ConnectBtn;
-        private System.Windows.Forms.Button BackBtn;
-        private System.Windows.Forms.Panel CreateRoomPanel;
-        private System.Windows.Forms.ListBox PlayersLB;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button PlayBtn;
         private System.Windows.Forms.Panel WatchPanal;
         private System.Windows.Forms.Button StartWatchingBtn;
         private System.Windows.Forms.ListBox StartWatchLB;
         private System.Windows.Forms.Label chooseRoom;
         private System.Windows.Forms.Panel StartPlayPanel;
-        private System.Windows.Forms.ListBox PlayRoomsLB;
+        private System.Windows.Forms.ListBox StartPlayingLB;
         private System.Windows.Forms.Button StartPlayingBtn;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox PlayersLB;
+        private System.Windows.Forms.Panel CreateRoomPanel;
     }
 }
 
