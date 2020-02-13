@@ -92,8 +92,7 @@ namespace FormMultiClient
 
             string recievedString = Encoding.ASCII.GetString(state.buffer, 0, received);
             string recievedObject = JsonConvert.DeserializeObject<string>(recievedString);
-            //ShowInterface();
-            //game.ShowMesseage(recievedObject);
+            game.ShowMesseage(recievedObject);
 
             MessageBox.Show(recievedObject);
             return;
@@ -163,9 +162,8 @@ namespace FormMultiClient
             byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
             ClientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendRoomNumberCallback, ClientSocket);
             MessageBox.Show("you are in a room");
-
+            ShowInterface();
         }
-
         private void CreateRoomBtn_Click(object sender, EventArgs e)
         {
             playerData.status = "creating room";
@@ -173,6 +171,7 @@ namespace FormMultiClient
             byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
             ClientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendRoomNumberCallback, ClientSocket);
             MessageBox.Show("room is created");
+            ShowInterface();
         }
 
         private void ShowInterface()

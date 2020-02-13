@@ -7,17 +7,17 @@ namespace GameServer
     {
         public string status;
         public string Word;
-        public bool p1flag;
-        public bool p2flag;
-
+        public Player player1;
+        public Player player2;
         public int RoomNo { get; set; }
         public List<Player> players { get; }
         public List<string> names = new List<string>();
-        
+
 
         public Room(Player player)
         {
             players = new List<Player>();
+            player1 = player;
             players.Add(player);
             status = "waiting";
         }
@@ -27,8 +27,9 @@ namespace GameServer
             players.Add(player);
             names.Add(player.userName);
 
-            if(players.Count > 1)
+            if (players.Count == 2)
             {
+                player2 = player;
                 status = "watch";
             }
         }

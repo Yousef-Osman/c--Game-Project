@@ -302,6 +302,9 @@
             this.Controls.Add(this.logInPanal);
             this.Controls.Add(this.Connect);
             this.Controls.Add(this.CreateRoomPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximumSize = new System.Drawing.Size(818, 497);
+            this.MinimumSize = new System.Drawing.Size(818, 497);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);

@@ -11,6 +11,7 @@ namespace GameServer
         public string status { get; set; }
         public int roomNo { get; set; }
         public bool connected { get; set; }
+        public string message { get; set; }
 
         [JsonIgnore]
         public Socket clientSocket { get; set; }

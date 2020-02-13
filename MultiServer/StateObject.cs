@@ -1,7 +1,6 @@
-﻿using System.Text;
-using System.Net.Sockets;
+﻿using System.Net.Sockets;
 
-namespace FormMultiClient
+namespace GameServer
 {
     public class StateObject
     {
