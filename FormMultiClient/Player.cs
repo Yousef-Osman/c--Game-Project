@@ -1,4 +1,6 @@
 ﻿using System.Net.Sockets;
+using Newtonsoft.Json;
+
 
 namespace FormMultiClient
 {
@@ -9,6 +11,8 @@ namespace FormMultiClient
         public string status { get; set; }
         public int roomNo { get; set; }
         public bool connected { get; set; }
-        public Socket client { get; set; }
+
+        [JsonIgnore]
+        public Socket clientSocket { get; set; }
     }
 }

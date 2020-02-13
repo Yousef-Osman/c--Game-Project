@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameServer", "MultiServer\G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FormMultiClient", "FormMultiClient\FormMultiClient.csproj", "{65AFCA94-19F0-455B-85FF-1519E5EF1A01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameInterfaceProtoType", "C:\Users\Yousef Osman\source\repos\GameInterfaceProtoType\GameInterfaceProtoType\GameInterfaceProtoType.csproj", "{48CB5C80-8372-4F4D-9E97-268974E5BE80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{65AFCA94-19F0-455B-85FF-1519E5EF1A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65AFCA94-19F0-455B-85FF-1519E5EF1A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65AFCA94-19F0-455B-85FF-1519E5EF1A01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48CB5C80-8372-4F4D-9E97-268974E5BE80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CB5C80-8372-4F4D-9E97-268974E5BE80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CB5C80-8372-4F4D-9E97-268974E5BE80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CB5C80-8372-4F4D-9E97-268974E5BE80}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

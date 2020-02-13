@@ -10,6 +10,7 @@ using System.Net.Sockets;
 using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using GameInterfaceProtoType;
 
 namespace FormMultiClient
 {
@@ -17,12 +18,15 @@ namespace FormMultiClient
     {
         Socket ClientSocket;
         int PORT = 15153;
-        List<Room> serverRooms = new List<Room>();
+        List<Room> serverRooms;
         Player playerData;
+        GameInterface game;
 
         public Form1()
         {
             InitializeComponent();
+            serverRooms = new List<Room>();
+            game = new GameInterface();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -88,7 +92,11 @@ namespace FormMultiClient
 
             string recievedString = Encoding.ASCII.GetString(state.buffer, 0, received);
             string recievedObject = JsonConvert.DeserializeObject<string>(recievedString);
+            //ShowInterface();
+            //game.ShowMesseage(recievedObject);
+
             MessageBox.Show(recievedObject);
+            return;
         }
 
         private void ReceiveRoomsCallback(IAsyncResult ar)
@@ -126,7 +134,7 @@ namespace FormMultiClient
             StartPlayingLB.Items.Clear();
             foreach (Room room in serverRooms)
             {
-                if (room.status == "play")
+                if (room.status == "waiting")
                 {
                     StartPlayingLB.Items.Add($"Room Number: {room.RoomNo}");
                 }
@@ -154,19 +162,25 @@ namespace FormMultiClient
             string message = JsonConvert.SerializeObject(playerData);
             byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
             ClientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendRoomNumberCallback, ClientSocket);
+            MessageBox.Show("you are in a room");
+
         }
 
         private void CreateRoomBtn_Click(object sender, EventArgs e)
         {
-            ChoicePanal.Visible = false;
-            CreateRoomPanel.Visible = true;
-
             playerData.status = "creating room";
             string message = JsonConvert.SerializeObject(playerData);
             byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
             ClientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendRoomNumberCallback, ClientSocket);
+            MessageBox.Show("room is created");
         }
-        
+
+        private void ShowInterface()
+        {
+            this.Hide();
+            game.ShowDialog();
+        }
+
         #region
         /// Close socket and exit program.
         private void Exit()
@@ -193,6 +207,5 @@ namespace FormMultiClient
             //    }
             //}
         }
-
     }
 }

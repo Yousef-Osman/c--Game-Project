@@ -1,4 +1,6 @@
 ﻿using System.Net.Sockets;
+using Newtonsoft.Json;
+
 
 namespace GameServer
 {
@@ -9,6 +11,8 @@ namespace GameServer
         public string status { get; set; }
         public int roomNo { get; set; }
         public bool connected { get; set; }
+
+        [JsonIgnore]
         public Socket clientSocket { get; set; }
     }
 }
