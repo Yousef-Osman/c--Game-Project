@@ -142,7 +142,6 @@ namespace GameServer
                 {
                     if (room.RoomNo == roomNumber)
                     {
-                        
                         if(room.status == "waiting")
                         {
                             room.AddPlayer(newPlayer);
@@ -156,15 +155,6 @@ namespace GameServer
                     }
                 }
             }
-
-            
-            return;
-
-            //sending player data back to client
-            //byte[] sendBuffer = new byte[1024];
-            //string message = JsonConvert.SerializeObject(newPlayer.id);
-            //sendBuffer = Encoding.ASCII.GetBytes(message);
-            //current.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendBackPlayerCallback, state);
         }
 
         private static void GameStart(int roomNumber)
@@ -172,53 +162,36 @@ namespace GameServer
             StateObject state = new StateObject();
 
             byte[] sendBuffer = new byte[1024];
-            string message = JsonConvert.SerializeObject("this is a message");
+            string message = JsonConvert.SerializeObject("Game Started");
             sendBuffer = Encoding.ASCII.GetBytes(message);
 
             foreach (Room room in rooms)
             {
                 if (room.RoomNo == roomNumber)
                 {
+                    
                     foreach (Player player in room.players)
                     {
-                        //state.workSocket = player.clientSocket;
-                        player.clientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendMesageCallback, player.clientSocket);
+                        player.clientSocket.Send(sendBuffer, 0, sendBuffer.Length, SocketFlags.None);
+                        //player.clientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendMesageCallback, player.clientSocket);
                     }
+                    //ReceiveFromFirstPlayer(roomNumber);
                 }
             }
         }
 
+        //send game started to all clients
         private static void SendMesageCallback(IAsyncResult ar)
         {
-            //StateObject state = (StateObject)ar.AsyncState;
             Socket current = (Socket)ar.AsyncState;
             current.EndSend(ar);
             Console.WriteLine("message has been sent to the player");
-
-            return;
-            //current.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, RecevieRoomCallback, state);
         }
 
-        // Close all connected client (server connections gets closed with the clients).
-        private static void CloseAllSockets()
-        {
-            foreach (Socket socket in clientSockets)
-            {
-                socket.Shutdown(SocketShutdown.Both);
-                socket.Close();
-            }
-            serverSocket.Close();
-        }
-
-        //*****************************************************************************************
-
-        private static void firstReceive(int roomNumber)
+        //receive frpm first player
+        private static void ReceiveFromFirstPlayer(int roomNumber)
         {
             StateObject state = new StateObject();
-
-            //byte[] sendBuffer = new byte[1024];
-            //string message = JsonConvert.SerializeObject("this is a message");
-            //sendBuffer = Encoding.ASCII.GetBytes(message);
 
             foreach (Room room in rooms)
             {
@@ -231,7 +204,6 @@ namespace GameServer
             }
         }
 
-        //use
         private static void RecevieLoopCallback(IAsyncResult ar)
         {
             StateObject state = (StateObject)ar.AsyncState;
@@ -264,14 +236,24 @@ namespace GameServer
                         SendToAll(room.RoomNo, room.player1.message);
                         room.player1.clientSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, RecevieRoomCallback, state);
                     }
-                    else if (room.player2.message == "from 2")
+                    else
+                    {
+                        SendToAll(room.RoomNo, "Wrong answer");
+                        state.workSocket = room.player2.clientSocket;
+                        state.workSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, RecevieLoopCallback, state);
+                    }
+
+                    if (room.player2.message == "from 2")
                     {
                         SendToAll(room.RoomNo, room.player2.message);
                         room.player2.clientSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, RecevieRoomCallback, state);
                     }
-
-                    //call this function again
-                    state.workSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, RecevieLoopCallback, state);
+                    else
+                    {
+                        SendToAll(room.RoomNo, "Wrong answer");
+                        state.workSocket = room.player1.clientSocket;
+                        state.workSocket.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, RecevieLoopCallback, state);
+                    }
                 }
             }
         }
@@ -291,7 +273,8 @@ namespace GameServer
                     foreach (Player player in room.players)
                     {
                         state.workSocket = player.clientSocket;
-                        state.workSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendToAllPlayersCallback, player.clientSocket);
+                        state.workSocket.Send(sendBuffer, 0, sendBuffer.Length, SocketFlags.None);
+                        //state.workSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendToAllPlayersCallback, player.clientSocket);
                     }
                 }
             }
@@ -306,6 +289,20 @@ namespace GameServer
 
             return;
         }
+
+        // Close all connected client (server connections gets closed with the clients).
+        private static void CloseAllSockets()
+        {
+            foreach (Socket socket in clientSockets)
+            {
+                socket.Shutdown(SocketShutdown.Both);
+                socket.Close();
+            }
+            serverSocket.Close();
+        }
+
+        //*****************************************************************************************
+
 
 
 

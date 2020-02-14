@@ -11,6 +11,7 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using GameInterfaceProtoType;
+using System.Threading;
 
 namespace FormMultiClient
 {
@@ -84,20 +85,6 @@ namespace FormMultiClient
             current.BeginReceive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None, ReceiveMessageCallback, state);
         }
 
-        private void ReceiveMessageCallback(IAsyncResult ar)
-        {
-            StateObject state = (StateObject)ar.AsyncState;
-            Socket client = state.workSocket;
-            int received = client.EndReceive(ar);
-
-            string recievedString = Encoding.ASCII.GetString(state.buffer, 0, received);
-            string recievedObject = JsonConvert.DeserializeObject<string>(recievedString);
-            game.ShowMesseage(recievedObject);
-
-            MessageBox.Show(recievedObject);
-            return;
-        }
-
         private void ReceiveRoomsCallback(IAsyncResult ar)
         {
             StateObject state = (StateObject)ar.AsyncState;
@@ -149,35 +136,67 @@ namespace FormMultiClient
                 roomString = StartWatchLB.SelectedItem.ToString();
                 var numberString = roomString.Split(' ');
                 playerData.roomNo = Convert.ToInt32(numberString[2]);
+                WatchPanal.Visible = false;
             }
             else if (bb.Text == "Start Playing")
             {
                 roomString = StartPlayingLB.SelectedItem.ToString();
                 var numberString = roomString.Split(' ');
                 playerData.roomNo = Convert.ToInt32(numberString[2]);
+                StartPlayPanel.Visible = false;
             }
 
             playerData.status = "join room";
             string message = JsonConvert.SerializeObject(playerData);
             byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
             ClientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendRoomNumberCallback, ClientSocket);
-            MessageBox.Show("you are in a room");
-            ShowInterface();
+            //MessageBox.Show("you are in a room");
+            Thread.Sleep(20);
+
+            this.BackColor = Color.DodgerBlue;
+            GamePanel.Visible = true;
         }
-        private void CreateRoomBtn_Click(object sender, EventArgs e)
+        private async void CreateRoomBtn_Click(object sender, EventArgs e)
         {
+            ChoicePanal.Visible = false;
+            BufferPanel.Visible = true;
+            BufferLabel.Visible = true;
+
             playerData.status = "creating room";
             string message = JsonConvert.SerializeObject(playerData);
             byte[] sendBuffer = Encoding.ASCII.GetBytes(message);
-            ClientSocket.BeginSend(sendBuffer, 0, sendBuffer.Length, SocketFlags.None, SendRoomNumberCallback, ClientSocket);
-            MessageBox.Show("room is created");
-            ShowInterface();
+            ClientSocket.Send(sendBuffer, 0, sendBuffer.Length, SocketFlags.None);
+            Task createRoom = new Task(StartTheGame);
+            createRoom.Start();
+            await createRoom;
+
+            this.BackColor = Color.DodgerBlue;
+            BufferPanel.Visible = false;
+            BufferLabel.Visible = false;
+            GamePanel.Visible = true;
         }
 
-        private void ShowInterface()
+        private void StartTheGame()
         {
-            this.Hide();
-            game.ShowDialog();
+            Socket current = ClientSocket;
+            StateObject state = new StateObject();
+            state.workSocket = current;
+
+            int received = current.Receive(state.buffer, 0, StateObject.BufferSize, SocketFlags.None);
+            string recievedString = Encoding.ASCII.GetString(state.buffer, 0, received);
+            string recievedObject = JsonConvert.DeserializeObject<string>(recievedString);
+            GameWordTB.Text = recievedObject;
+        }
+
+        private void ReceiveMessageCallback(IAsyncResult ar)
+        {
+            StateObject state = (StateObject)ar.AsyncState;
+            Socket client = state.workSocket;
+            int received = client.EndReceive(ar);
+
+            string recievedString = Encoding.ASCII.GetString(state.buffer, 0, received);
+            string recievedObject = JsonConvert.DeserializeObject<string>(recievedString);
+            GameWordTB.Text = recievedObject;
         }
 
         #region
@@ -205,6 +224,11 @@ namespace FormMultiClient
             //        StartWatchLB.Items.Add(item);
             //    }
             //}
+        }
+
+        private void StartPlayPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

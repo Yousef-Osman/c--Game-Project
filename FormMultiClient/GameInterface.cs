@@ -12,14 +12,16 @@ namespace GameInterfaceProtoType
 {
     public partial class GameInterface : Form
     {
+        public string messageBox { get; set; }
         public GameInterface()
         {
             InitializeComponent();
+            
         }
 
-        public void ShowMesseage(string msg)
+        private void GameInterface_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(msg);
+            MessageBox.Show(messageBox);
         }
     }
 }
